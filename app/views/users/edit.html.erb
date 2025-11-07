@@ -1,0 +1,26 @@
+<%= form_with model: @user do |form| %>
+  <%= form.label :user_name, "Your username" %>
+  <%= form.text_field :user_name, placeholder: "Enter username" %>
+  <br></br>
+
+  <%= form.label :password, "Secret password" %>
+  <%= form.password_field :password, placeholder: "Enter password" %>
+<br></br>
+
+  <%= form.label :email, "Emial address vibes"%>
+  <%= form.email_field :email, placeholder: "Enter email" %>
+  <br></br>
+  <%= form.submit %>
+<% end %>
+
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> unable to edit user</h2>
+
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %> 

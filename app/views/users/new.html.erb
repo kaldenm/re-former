@@ -1,0 +1,49 @@
+#form with model what object shoudl it be referring to - for a user! 
+#this confused me tho bc normally oyu are inheritiyng the user instance varibale but here we are what constructing it? for passign theparams to the controller? 
+# #submits to users route 
+# #make sure the params have what is necessary - user_name, password, email 
+
+
+<!--
+<form action="/users" method="post">
+  <label for="user_user_name">User name:</label>
+  <input type="text" id="user_user_name"
+name="user[user_name]"><br><br>
+  <label for="user_password">Password:</label>
+  <input type="text" id="user_password"
+name="user[password]"><br><br>
+  <label for="user_email">Email:</label>
+  <input type="text" id="user_email" name="user[email]"><br><br>
+  <input type="submit" name="Submit"><br><br>
+</form>
+-->
+
+
+<!--
+<%= form_tag("/users", method: "post") do %>
+       <input name="user[user_name]" type="text" id="user_name" />
+       <%=label_tag(:user_name, "User name") %>
+
+       <input name="user[password]" type="password" id="password" />
+       <%=label_tag(:password, "Password") %>
+
+       <input name="user[email]" type="email" id="email"/>
+       <%=label_tag(:email, "Email") %>
+       <%= submit_tag("Create User") %>
+<% end %>
+-->
+
+<%= form_with model: @user do |form| %>
+  <%= form.label :user_name, "Your username" %>
+  <%= form.text_field :user_name, placeholder: "Enter username" %>
+  <br></br>
+
+  <%= form.label :password, "Secret password" %>
+  <%= form.password_field :password, placeholder: "Enter password" %>
+<br></br>
+
+  <%= form.label :email, "Emial address vibes"%>
+  <%= form.email_field :email, placeholder: "Enter email" %>
+  <br></br>
+  <%= form.submit %>
+<% end %>
